@@ -28,7 +28,7 @@ jobs:
     - name: Docker Build 
       run: |
         docker build . -t contosobikes/aspmvc:1.0.0
-    - name: Docker login to ACR
+    - name: Docker login 
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
