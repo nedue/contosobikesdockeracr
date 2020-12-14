@@ -1,4 +1,4 @@
-name: .NET Core for contosobikessql
+name: .NET Core MVC w Azure SQL in docker for contosobikes
 
 on:
   push:
@@ -25,13 +25,17 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-    - name: dotnet publish
+    - name: Docker Build 
       run: |
-        dotnet publish -c Release -o dotnetcorewebapp
-    - name: 'Deploy to Azure Webapp'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: './dotnetcorewebapp'
-
+        docker build . -t gregroe/contosobikes:1.0.0
+    - name: Docker login 
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
+      run: |
+         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
+    - name: Docker push
+      run: |
+        docker push gregroe/contosobikes:1.0.0
+        
+    
