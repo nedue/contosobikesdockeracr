@@ -46,8 +46,8 @@ jobs:
        password: ${{ secrets.ACR_PASSWORD }}
 
     - run: |
-       docker build . -t contosobikes.azurecr.io/contosobikes:${{ github.sha }}
-       docker push contosobikes.azurecr.io/contosobikes:${{ github.sha }}
+       docker build . -t consotobikes.azurecr.io/contosobikes:${{ github.sha }}
+       docker push consotobikes.azurecr.io/contosobikes:${{ github.sha }}
 
 
 
