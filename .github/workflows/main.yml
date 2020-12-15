@@ -44,12 +44,12 @@ jobs:
        login-server: consotobikes.azurecr.io
        username: ${{ secrets.ACR_USERNAME }}
        password: ${{ secrets.ACR_PASSWORD }}
-#    - run: |
-#       docker build . -t consotobikes.azurecr.io/contosobikes:1.0.0
-#       docker push consotobikes.azurecr.io/contosobikes:1.0.0
     - run: |
-       docker build . -t consotobikes.azurecr.io/contosobikes:${{ github.sha }}
-       docker push consotobikes.azurecr.io/contosobikes:${{ github.sha }}
+       docker build . -t consotobikes.azurecr.io/contosobikes:1.0.0
+       docker push consotobikes.azurecr.io/contosobikes:1.0.0
+#    - run: |
+#       docker build . -t consotobikes.azurecr.io/contosobikes:${{ github.sha }}
+#       docker push consotobikes.azurecr.io/contosobikes:${{ github.sha }}
 
 
 
