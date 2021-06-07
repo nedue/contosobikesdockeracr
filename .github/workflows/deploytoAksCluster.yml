@@ -16,12 +16,24 @@ jobs:
       run: |
         docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t consotobikes.azurecr.io/contosobikeaks:${{ github.sha }} --label dockerfile-path=Dockerfile
         
+    - uses: Azure/container-scan@v0 
+      name: Scan image for vulnerabilities
+      id: container-scan
+      continue-on-error: true
+      with:
+        image-name: consotobikes.azurecr.io/contosobikeaks:${{ github.sha }}      
      
     - name: Push
       id: push-image
       run: |
                 docker push consotobikes.azurecr.io/contosobikeaks:${{ github.sha }}
-
+                
+    - name: Post logs to appinsights
+      uses: Azure/publish-security-assessments@v0
+      with: 
+        scan-results-path: ${{ steps.container-scan.outputs.scan-report-path }}
+        connection-string: ${{ secrets.AZ_APPINSIGHTS_CONNECTION_STRING }}
+        subscription-token: ${{ secrets.AZ_SUBSCRIPTION_TOKEN }} 
 
     - uses: azure/k8s-set-context@v1
       with:
