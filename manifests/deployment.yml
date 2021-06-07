@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "contosobikeaks-8c64"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "contosobikeaks-8c64"
+  template:
+    metadata:
+      labels:
+        app: "contosobikeaks-8c64"
+    spec:
+      containers:
+        - name: "contosobikeaks-8c64"
+          image: "consotobikes.azurecr.io/contosobikeaks"
+          ports:
+          - containerPort: 80
