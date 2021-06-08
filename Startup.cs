@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using DotNetCoreSqlDb.Models;
+using Microsoft.ApplicationInsights.AspNetCore;
 
 namespace DotNetCoreSqlDb
 {
@@ -28,7 +29,10 @@ namespace DotNetCoreSqlDb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+
+            services.AddApplicationInsightsTelemetry();
+
+                        
             //services.AddDbContext<MyDatabaseContext>(options =>
               //      options.UseSqlite("Data Source=localdatabase.db"));
             services.AddDbContext<MyDatabaseContext>(options =>
