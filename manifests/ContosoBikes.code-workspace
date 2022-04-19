@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\contosobike"
+		},
+		{
+			"name": "contosobikesdockeracr",
+			"path": ".."
+		},
+		{
+			"name": "POI",
+			"path": "..\\..\\POI"
+		}
+	],
+	"settings": {}
+}
