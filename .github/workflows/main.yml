@@ -28,7 +28,7 @@ jobs:
       
 #    - name: Docker Build and Push
 #      run: |
-#        docker build . -t gregroe/contosobikes:1.0.0
+#        docker build . -t pcege/contosobikes:1.0.0
 #    - name: Docker login 
 #      env:
 #        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME}}
